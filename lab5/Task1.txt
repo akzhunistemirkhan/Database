@@ -1,0 +1,13 @@
+﻿It is not always possible to achieve both BCNF and
+dependency preservation
+ Consider a schema:
+dept_advisor(s_ID, i_ID, department_name)
+ With function dependencies:
+i_ID → dept_name
+s_ID, dept_name → i_ID
+ dept_advisor is not in BCNF
+• i_ID is not a superkey.
+ Any decomposition of dept_advisor will not include all the
+attributes in
+s_ID, dept_name → i_ID
+ Thus, the composition is NOT be dependency preserving
