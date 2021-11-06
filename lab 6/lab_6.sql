@@ -1,5 +1,5 @@
 -- 1a
-SELECT * FROM dealer cross join  client;
+SELECT * from dealer cross join  client;
 
 -- 1b
 select d, c.name, c.city, c.priority, s.id, s.date, s.amount
@@ -20,12 +20,12 @@ where amount>=100 and amount<=500
 
 -- 1e
 SELECT d.id, d.name
-FROM client right join dealer as d
+from client right join dealer as d
 on d.id = client.dealer_id;
 
 -- 1f
 SELECT c.name, city, d.name, charge
-FROM client c inner join dealer d on c.dealer_id = d.id;
+from client c inner join dealer d on c.dealer_id = d.id;
 
 -- 1g
 select client.name, city, dealer.name, charge
@@ -34,7 +34,7 @@ where charge>0.12
 
 -- 1h
 SELECT c.name, city, s.id, s.date, amount, d.name, charge
-FROM client c left join dealer d on c.dealer_id = d.id
+from client c left join dealer d on c.dealer_id = d.id
 left join sell s on c.id = s.client_id;
 
 -- 1i
@@ -47,14 +47,14 @@ where s.amount >= 2000 and c.priority is not null;
 -- 2a
 CREATE VIEW a1 AS
 SELECT s.date, COUNT(DISTINCT s.client_id), AVG(s.amount), SUM(s.amount)
-FROM sell s
+from sell s
 GROUP BY s.date;
 drop view a1;
 
 -- 2b
 CREATE VIEW b1 AS
 SELECT s.date, s.amount
-FROM sell s
+from sell s
 ORDER BY s.amount DESC
 LIMIT 5;
 drop view b1;
@@ -70,7 +70,7 @@ drop view c1;
 -- 2d
 CREATE VIEW d1 AS
 SELECT d, SUM(amount * d.charge)
-FROM sell s
+from sell s
 JOIN dealer d ON d.id = s.dealer_id
 GROUP BY d;
 drop view d1;
@@ -85,7 +85,7 @@ drop view e1;
 -- 2f
 CREATE VIEW f1 AS
 SELECT c.city, COUNT(s.amount), AVG(s.amount * (d.charge + 1)), SUM(s.amount * (d.charge + 1))
-FROM client c
+from client c
 JOIN dealer d ON c.dealer_id = d.id
 JOIN sell s ON c.id = s.client_id
 GROUP BY c.city;
